@@ -1,0 +1,27 @@
+{
+  "name": "namaste-react",
+  "version": "1.0.0",
+  "description": "igniting-our-app",
+  "homepage": "https://github.com/RockeR26/NamasteReact#readme",
+  "bugs": {
+    "url": "https://github.com/RockeR26/NamasteReact/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RockeR26/NamasteReact.git"
+  },
+  "license": "ISC",
+  "author": "Sagnik",
+  "type": "commonjs",
+
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "parcel": "^2.15.4"
+  },
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  }
+}
