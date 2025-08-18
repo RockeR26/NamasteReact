@@ -13,7 +13,6 @@
   "license": "ISC",
   "author": "Sagnik",
   "type": "commonjs",
-
   "scripts": {
     "test": "jest"
   },
@@ -23,5 +22,7 @@
   "dependencies": {
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
-  }
+  },
+  "main": "index.js",
+  "keywords": []
 }
