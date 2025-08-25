@@ -1,0 +1,53 @@
+.logo{
+    width: 100px;
+}
+
+.header-container{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 10px;
+    border: 1px solid black;
+}
+
+.nav-links{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+    font-size: larger;
+    padding: 0px 10px;
+}
+
+.body-conatiner{
+    margin: 10px 10px;
+}
+
+.res-card{
+    height: 340px;
+    width: 250px;
+    background-color: #ecebeb;
+    margin: 10px 0px;
+}
+
+.res-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    gap: 10px;
+}
+
+.res-image{
+    width:230px;
+    padding: 10px;
+    height:200px;
+    overflow: hidden;
+}
+
+h3,h4,h5{
+    margin: 2px;
+    padding: 0px 5px;
+}
+
+.res-card:hover{
+    background-color: rgb(206, 206, 206);
+}
