@@ -1,9 +1,12 @@
-
+import { LOGO_URL } from "../assets/link"
+import logo from "../assets/logo.png"
 const Header=()=>{
+    console.log(logo)
+
   return(
     <div className="header-container">
       <div className="logo-conatiner">
-        <img className="logo" src="https://vscode.dev/github/RockeR26/NamasteReact/blob/main/ep-6%20Explore%20the%20World/src/assets/logo.png" alt="" /> 
+        <img className="logo" loading="eager" src={LOGO_URL} alt="" /> 
       </div>
       <ul className="nav-links">
         <li>Home</li>  

@@ -32,8 +32,8 @@
 .res-container{
     display: flex;
     flex-wrap: wrap;
-    justify-content:space-between;
-    gap: 10px;
+    gap: 75px;
+    
 }
 
 .res-image{
@@ -50,4 +50,25 @@ h3,h4,h5{
 
 .res-card:hover{
     background-color: rgb(206, 206, 206);
+}
+
+.shimmer{
+    height: 340px;
+    width: 250px;
+    background-color: #e2e2e2;
+    margin: 10px 0px;
+}
+
+.shimmer-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-between;
+}
+
+.filter{
+    display: flex;
+    gap: 10px;
+}
+.search > button{
+    margin: 0 5px;
 }

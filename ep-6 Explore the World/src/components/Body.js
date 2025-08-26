@@ -7,48 +7,59 @@ import Shimmer from "./Shimmer"
 const Body = () => {
     const [list, setList] = useState([]);
     const [top5, setTop5] = useState(false);
-    const [resList,setResList]=useState([]);
+    const [resList, setResList] = useState([]);
+    const [text, setText] = useState("")
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchData(URL);
-    },[])
+    }, [])
 
-    const fetchData=async(url)=>{
+    const fetchData = async (url) => {
         try {
-            const res=await fetch(url);
+            const res = await fetch(url);
             const data = await res.json();
-            const resData=data.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+            const resData = data.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
             setList(resData);
             setResList(resData);
         } catch (error) {
-          console.error(error)  
+            console.error(error)
         }
 
     }
 
-    const handleClick = () => {
+    const handleFilter = () => {
         if (!top5) {
             const top5 = list.sort((a, b) => b - a).slice(0, 5)
             const filetredSort = list.filter((res) => top5.includes(res)).sort((a, b) => b.info.avgRating - a.info.avgRating)
             setResList(filetredSort);
             setTop5(true);
-        }else{
+        } else {
             setResList(list);
-            setTop5(false);   
+            setTop5(false);
         }
     }
+    const handleSearch = () => {
+        const filtered = list.filter(res => res.info.name.toLowerCase().includes(text.toLowerCase()) || res.info.cuisines.join(',').toLowerCase().includes(text.toLowerCase()))
+        setResList(filtered)
+    }
+
 
 
     return (
         <div className="body-conatiner">
             <div className="filter">
-                <button onClick={handleClick} style={{backgroundColor:top5&&'gray'}}>Top 5 Restuarants</button>
+                <div className="search">
+                    <input type="text" className="search-text" value={text} onChange={(e) => setText(e.target.value)} />
+                    <button onClick={handleSearch}>Search</button>
+                </div>
+                <button onClick={handleFilter} style={{ backgroundColor: top5 && 'gray' }}>Top 5 Restuarants</button>
             </div>
-            <div className="res-container">
+            {(resList.length === 0) ? <Shimmer /> : <div className="res-container">
                 {resList.map((res) => <ResCard resInfo={res.info} key={res.info.id} />)}
-            </div>
+            </div>}
         </div>
     )
 }
+
 
 export default Body
