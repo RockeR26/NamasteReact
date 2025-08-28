@@ -19,12 +19,12 @@
     margin-top: 30px;
 }
 
-.body-conatiner{
+.body-container{
     margin: 10px 10px;
 }
 
 .res-card{
-    height: 340px;
+    height: 350px;
     width: 250px;
     background-color: #ecebeb;
     margin: 10px 0px;
@@ -41,12 +41,11 @@
     width:230px;
     padding: 10px;
     height:200px;
-    overflow: hidden;
 }
 
-h3,h4,h5{
+.res-card-text{
     margin: 2px;
-    padding: 0px 5px;
+    padding: 1px 5px;
 }
 
 .res-card:hover{
@@ -54,7 +53,7 @@ h3,h4,h5{
 }
 
 .shimmer{
-    height: 340px;
+    height: 350px;
     width: 250px;
     background-color: #e2e2e2;
     margin: 10px 0px;
@@ -77,4 +76,49 @@ h3,h4,h5{
 .login > button{
     padding: 5px;
     width: 70px;
+}
+
+a{
+    text-decoration: none;
+    color:black;
+}
+
+.menu-header *,.menu-item *{
+    margin: 2px;
+}
+
+.menu-header {
+    margin: 20px 0px;
+    border-bottom:solid rgb(210, 209, 209) 2px;
+    padding: 10px;
+
+}
+div.menu-header{
+    display: flex;
+    justify-content: center;
+}
+
+.menu-info{
+    margin: 5px 5px;
+    padding: 0 3px;
+}
+
+.menu-image{
+    width: 220px;
+    height: 180px;
+    padding: 12px;
+}
+
+p.menu-info{
+    margin: 10px 5px;
+    color: rgb(76, 76, 76);
+    overflow-wrap: break-word;
+}
+
+
+
+
+.menu-title{
+
+    margin-bottom: 2px;
 }

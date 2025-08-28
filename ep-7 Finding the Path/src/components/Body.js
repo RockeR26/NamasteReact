@@ -2,13 +2,14 @@ import ResCard from "./ResCard"
 import { useEffect, useState } from "react"
 import { URL } from "../assets/link"
 import Shimmer from "./Shimmer"
+import {Link} from "react-router"
 
 
 const Body = () => {
     const [list, setList] = useState([]);
     const [top5, setTop5] = useState(false);
     const [resList, setResList] = useState([]);
-    const [text, setText] = useState("")
+    const [text, setText] = useState("");
 
     useEffect(() => {
         fetchData(URL);
@@ -18,7 +19,7 @@ const Body = () => {
         try {
             const res = await fetch(url);
             const data = await res.json();
-            const resData = data.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+            const resData = data?.data?.cards[4]?.card.card?.gridElements?.infoWithStyle?.restaurants
             setList(resData);
             setResList(resData);
         } catch (error) {
@@ -46,7 +47,7 @@ const Body = () => {
 
 
     return (
-        <div className="body-conatiner">
+        <div className="body-container">
             <div className="filter">
                 <div className="search">
                     <input type="text" className="search-text" value={text} onChange={(e) => setText(e.target.value)} />
@@ -55,7 +56,7 @@ const Body = () => {
                 <button onClick={handleFilter} style={{ backgroundColor: top5 && 'lightgrey' }}>Top 5 Restuarants</button>
             </div>
             {(resList.length === 0) ? <Shimmer /> : <div className="res-container">
-                {resList.map((res) => <ResCard resInfo={res.info} key={res.info.id} />)}
+                {resList.map((res) => <Link to={"/restaurants/"+res.info.id} key={res.info.id}><ResCard resInfo={res.info} /></Link>)}
             </div>}
         </div>
     )
