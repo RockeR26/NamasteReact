@@ -4,12 +4,11 @@ import { Link } from "react-router";
 import useOnlineStatus from "../assets/useOnlineStatus";
 const Header=()=>{
 const [login,setLogin]=useState(false);
-
 const status=useOnlineStatus();
 const dotColor=status?"green":"red"
 
   return(
-    <div className="header-container">
+    <div className="container">
       <div className="logo-conatiner">
         <img className="logo" loading="eager" src={LOGO_URL} alt="" /> 
       </div>
