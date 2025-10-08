@@ -1,7 +1,7 @@
 import { RES_IMAGE_URL } from "../assets/link";
 
 const ResCardInfo = ({resInfo}) => {
-      const { name, avgRating, sla, cuisines, areaName, cloudinaryImageId, id } = resInfo
+      const { name, avgRating, sla, cuisines, areaName, cloudinaryImageId} = resInfo
       const cuisineLength = [cuisines].join(",").length;
       const nameLength = name.length
   return (
