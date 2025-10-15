@@ -1,11 +1,15 @@
 import { useContext, useState } from "react";
-import { LOGO_URL } from "../assets/link";
+import  LOGO_URL  from "url:../assets/logo.png";
 import { NavLink } from "react-router";
 import useOnlineStatus from "../assets/useOnlineStatus";
 import UserContext from "../context/UserContext";
 import {useSelector} from 'react-redux'
 
+
 const Header = () => {
+const logo=new URL('../assets/logo.png',import.meta.url);
+
+  
   const [login, setLogin] = useState(false);
   const {user}=useContext(UserContext);
 
@@ -16,7 +20,7 @@ const Header = () => {
   return (
     <div className="container flex justify-between mb-3 shadow-xl rounded-2xl bg-gray-100">
       <div>
-        <img className="w-24" loading="eager" src={LOGO_URL} alt="" />
+        <img className="w-24" loading="eager" src={logo} alt="" />
       </div>
       <ul className="flex mx-2 items-center">
         <li className="px-2 text-lg">{status ? ("Online") : "Offline"} <span style={{ color: dotColor }}>●</span></li>

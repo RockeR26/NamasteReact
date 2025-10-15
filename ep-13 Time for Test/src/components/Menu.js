@@ -4,9 +4,11 @@ import { URL_MENU } from "../assets/link";
 import useFetch from "../assets/useFetch";
 import ItemCategory from "./ItemCategory";
 
+
 const Menu = () => {
     const { resID } = useParams();
     const data=useFetch(URL_MENU+resID);
+    console.log(data);
     const info=data?.data?.cards[2]?.card?.card?.info
     const rawResMenu2 = data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards;
 

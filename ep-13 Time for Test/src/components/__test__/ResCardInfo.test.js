@@ -11,7 +11,7 @@ it("should display restraunt card info",()=>{
     expect(name).toBeInTheDocument();
 });
 
-it("should display veg label (HOC)",()=>{
+it("should display veg label on card (HOC)",()=>{
     const EnhancedComponent=vegResCard(ResCardInfo);
     render(<EnhancedComponent resInfo={MOCK_DATA}/>);
     const veg=screen.getByText(/Veg/);

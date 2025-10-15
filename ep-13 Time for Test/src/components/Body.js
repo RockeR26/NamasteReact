@@ -21,7 +21,7 @@ const Body = () => {
         <div className="container ">
             <div className="flex my-6 justify-around">
                 <div className="search">
-                    <input type="text" className="py-2 px-4 rounded-3xl border-1 border-gray-400" value={text} onChange={(e) => setText(e.target.value)} placeholder="Search                          🔍" />
+                    <input data-testid="searchInput" type="text" className="py-2 px-4 rounded-3xl border-1 border-gray-400" value={text} onChange={(e) => setText(e.target.value)} placeholder="Search                          🔍" />
                 </div>
                 <div>
                     <button className="login w-50 text-lg bg-orange-500 py-2 shadow-xl border-gray-300 border-2 rounded-3xl hover:bg-orange-300 cursor-pointer text-slate-200" onClick={() => setTop5(!top5)} style={{ backgroundColor: top5 && 'black' }}>Top 5 Restuarants</button>
