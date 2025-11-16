@@ -1,7 +1,12 @@
 import React, { useRef, useState } from 'react'
 import { validateData } from '../assets/validate';
 import { auth } from '../assets/firebase';
-import { createUserWithEmailAndPassword,signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword,signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { useNavigate } from 'react-router';
+import Header from './Header';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../redux/userSlice';
+import { BGIMG, DP } from '../assets/links';
 
 const Login = () => {
 const [toggleValue,setToggleValue]=useState(true);
@@ -9,6 +14,8 @@ const [message,setMessage]=useState(null)
 const email=useRef();
 const password=useRef();
 const name= useRef();
+const navigate=useNavigate();
+const dispatch=useDispatch();
 
 
 
@@ -30,7 +37,8 @@ const handleSubmit=()=>{
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
-        console.log(user);
+    const{uid,email,displayName,photoURL}=user
+        dispatch(addUser({uid,email,displayName,photoURL}));
         email.current.value="";
         password.current.value="";
 
@@ -49,7 +57,17 @@ const handleSubmit=()=>{
 createUserWithEmailAndPassword(auth, email.current.value, password.current.value).then((userCredential) => {
     // Signed up 
     const user = userCredential.user;
-    console.log(user);
+    updateProfile(auth.currentUser, {
+      displayName:name.current.value, photoURL:DP
+    }).then(() => {
+        const{uid,email,displayName,photoURL}=auth.currentUser
+        dispatch(addUser({uid,email,displayName,photoURL}))
+    }).catch((error) => {
+      // An error occurred
+      // ...
+      console.log(error);
+      
+    });
         email.current.value="";
         password.current.value="";
         name.current.value="";
@@ -57,8 +75,7 @@ createUserWithEmailAndPassword(auth, email.current.value, password.current.value
   }).catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    console.log(error);
-    console.log(user);
+    setMessage(errorCode);
     email.current.value="";
     password.current.value="";
     name.current.value="";
@@ -69,8 +86,10 @@ createUserWithEmailAndPassword(auth, email.current.value, password.current.value
 }
 
   return (
+    <>
+    <Header/>
     <div className='relative'>
-      <img  src="https://assets.nflxext.com/ffe/siteui/vlv3/7c9e63f7-5b5d-43a4-a3fb-41917ac25301/web/IN-en-20251013-TRIFECTA-perspective_7bc35267-b383-4fb3-b173-eae32292d42e_large.jpg" alt="bg"  className='h-screen w-screen'/>
+      <img  src={BGIMG} alt="bg"  className='h-screen w-screen'/>
       <form onSubmit={(e)=>e.preventDefault()} className='bg-black/90 text-white absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  mx-auto w-90  p-12 rounded-lg bg-opacity-50 '>
         <h1 className='text-2xl font-bold my-2 p-2 mx-auto'>{toggleValue?"Sign In" : "Sign Up"}</h1>
         {!toggleValue&&<input ref={name} className='p-2 my-6 mx-auto block w-full bg-gray-700 rounded-sm' type="text" placeholder='Full Name'/>}
@@ -81,6 +100,7 @@ createUserWithEmailAndPassword(auth, email.current.value, password.current.value
         <p className='text-gray-400 text-xs'>{toggleValue?"New to Netflix?" : "Already have an account?"} <span className='text-white text-xs cursor-pointer hover:underline' onClick={toggleForm}>{!toggleValue?"Sign-in" : "Sign-up"} now</span></p>
       </form>
     </div>
+  </>
   )
 }
 

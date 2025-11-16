@@ -1,12 +1,12 @@
+import { Provider } from "react-redux"
 import Body from "./components/Body"
-import Header from "./components/Header"
+import store from "./redux/store"
 
 const App = () => {
   return (
-    <>
-      <Header/>
+    <Provider store={store}>
       <Body/>
-    </>
+    </Provider>
   )
 }
 
